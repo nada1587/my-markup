@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # my-markup
 
 > A Vue.js project
@@ -18,9 +17,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-=======
-# markup
-123
->>>>>>> 0810fe431c3a5995fdfbe3d56f7a86148bcd1e86
