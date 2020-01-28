@@ -1,0 +1,157 @@
+@charset "utf-8";
+
+@import "base";
+@import "mixin";
+@import "extend";
+
+// 공통페이지 레이아웃
+#wrapper {
+  overflow:hidden;
+  position:relative;
+  max-width:750px;
+  margin:0 auto;
+}
+
+// 메인 HEADER
+.main-header {
+  @include u_flex;
+  height:50px;
+  padding:0 15px;
+  line-height:50px;
+  > h1 {
+    font-size:18px;
+  }
+  > button {
+    width:30px;
+    height:30px;
+    border:1px solid #eee;
+  }
+  .btn-back {
+    margin-right:auto;
+  }
+  .btn-close {
+    margin-left:auto;
+  }
+}
+
+// 공통 POPUP
+.u-popup {
+  position:fixed;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,.5);
+  font-size:0;
+  > .max-fixed-width {
+    &:after {
+      content:'';
+      display:inline-block;
+      height:100vh;
+    }
+    .pop-container {
+      position:relative;
+      overflow:hidden;
+      display:inline-block;
+      width:100%;
+      height:auto;
+      max-height:100vh;
+      padding-top:80px;
+      border-top-right-radius:20px;
+      border-top-left-radius:20px;
+      background:#fff;      
+      vertical-align:bottom;     
+      .pop-close {
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:30px;
+        background:#f4f4f4;
+        text-align:center;
+      }
+      .pop-header {
+        position:absolute;
+        top:30px;
+        width:100%;
+        height:50px;
+        padding:0 20px;
+        text-align:center;
+        line-height:50px;
+        &.is-line {
+          box-shadow: inset 0 -1px 0 0 #ddd;
+        }
+        h1 {
+          text-align:center;
+          margin:0 30px;
+          font-size:18px;
+          @include ellipsis;
+        }
+        > button {
+          position:absolute;
+          top:10px;
+          width:30px;
+          height:30px;
+        }
+        .pop-btn-back {
+          left:20px;
+        }
+        .pop-btn-text {
+          right:20px;
+          &.active {
+            color:skyblue;
+          }
+        }
+      }
+      .pop-contents {
+        height:auto;
+        max-height:calc(100vh - 80px);
+        overflow-y:scroll;
+        @include scrollTouch;
+        overscroll-behavior: none;
+        font-size:12px;
+      }
+      .pop-btn-area {
+        height: 76px;
+        > .max-fixed-width {
+          position:fixed;
+          bottom:0;
+          left:0;
+          right:0;
+          padding:14px 5px;
+          background:#fff;
+          box-shadow: inset 0 1px 0 0 #ddd;
+          @include u_tb_fixed;
+          text-align:center;
+          > div {
+            @include u_td;
+            padding:0 5px;
+          }
+        }
+        button {
+          width:100%;
+          height:48px;
+          border:1px solid #ccc;
+          border-radius:24px;
+          font-size:16px;
+          font-weight:500;
+        }
+      }
+    }
+  }
+}
+
+.u_list_horizontal {
+  padding:10px;
+  @include u_list_horizontal;
+  &.recommend {
+    a {
+      padding:5px 10px;
+      border:1px solid #eee;
+      border-radius:4px;
+      color:#ccc;
+      font-size:16px;
+      text-align:center;
+    }
+  }
+}
