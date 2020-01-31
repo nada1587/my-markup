@@ -16,7 +16,7 @@
   }
 }
 
-@mixin flex_box($rate) {
+@mixin imgFlex($rate:100%){
   overflow:hidden;
   position:relative;
   height:0;
@@ -40,7 +40,7 @@
   white-space:nowrap;
 }
 
-@mixin clampNum ($line) {
+@mixin clampNum ($line:2){
   display:-webkit-box;
   -webkit-box-orient:vertical;
   overflow:hidden;
@@ -52,7 +52,7 @@
   word-wrap:break-word;
 }
 
-@mixin rnded ($rndValue) {
+@mixin rnded ($rndValue){
   border-top-left-radius:$rndValue;
   border-top-right-radius:$rndValue;
   border-bottom-left-radius:$rndValue;
@@ -61,6 +61,20 @@
 
 @mixin scrollTouch {
   -webkit-overflow-scrolling:touch;
+}
+
+@mixin flexLayout($wrap:wrap,$direction:row,$justify:center,$align:center){
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: $wrap;
+  flex-direction: $direction;
+  -webkit-box-align: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+  -webkit-box-pack: $justify;
+  -ms-flex-pack: $justify;
+  justify-content: $justify;
 }
 
 @mixin u_tb{
@@ -78,42 +92,36 @@
   display:table-cell;
 }
 
-@mixin u_flex{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-@mixin is_bg($bg_color,$txt_color:#fff) {
+@mixin is_bg($bg_color,$txt_color:#fff){
   background-color:$bg_color;
   color:$txt_color;
   border-color:$bg_color;
 }
 
-@mixin midCenterTransform ($x, $y) {
+@mixin midCenterTransform ($x, $y){
   -webkit-transform:translate($x, $y);
   transform:translate($x, $y);
 }
 
-@mixin keyframes($name) {
+@mixin keyframes($name){
   @keyframes #{$name} {
     @content;
   } 
 }
 
-@mixin linear-gradient ($parameters...) {
+@mixin linear-gradient ($parameters...){
   background: -webkit-linear-gradient($parameters);
   background: -o-linear-gradient($parameters);
   background: -moz-linear-gradient($parameters);
   background: linear-gradient($parameters);
 }
 
-@mixin u_list_horizontal {
+@mixin list_horizontal_scroll ($margin:10px){
   overflow-x:scroll;
   white-space:nowrap;
   > li {
     display:inline-block;
-    margin-left:10px;
+    margin-left:$margin;
     &:first-child {
       margin-left:0;
     }

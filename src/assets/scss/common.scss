@@ -14,14 +14,16 @@
 
 // 메인 HEADER
 .main-header {
-  @include u_flex;
   height:50px;
   padding:0 15px;
   line-height:50px;
+  @include flexLayout(wrap,row,space-around,center);
   > h1 {
+    @include ellipsis;
+    width: 60%;
     font-size:18px;
   }
-  > button {
+  button {
     width:30px;
     height:30px;
     border:1px solid #eee;
@@ -141,9 +143,9 @@
   }
 }
 
-.u_list_horizontal {
+.u-list-horizontal {
   padding:10px;
-  @include u_list_horizontal;
+  @include list_horizontal_scroll(15px);
   &.recommend {
     a {
       padding:5px 10px;
@@ -152,6 +154,55 @@
       color:#ccc;
       font-size:16px;
       text-align:center;
+    }
+  }
+}
+
+.flex-box {
+  padding:15px;
+  background:#f4f4f4;
+  @include flexLayout(wrap,row,flex-start,center);
+  > li {
+    width:auto;
+    min-height:30px;
+    padding:10px;
+    margin:5px;
+    border:1px solid #000;
+    > a {
+      // @include clampNum();
+    }
+  }
+}
+
+.u-drag-box {
+  padding:10px;
+  .smooth-dnd-draggable-wrapper {
+    margin-top:10px;    
+    &:first-child {
+      margin-top:0;
+    }
+  }
+  .draggable-item {
+    position:relative;
+    padding-left:80px;
+    > i {
+      position:absolute;
+      left:10px;
+      top:50%;
+      display:inline-block;
+      height:20px;
+      margin-top:-10px;
+    }
+    > div {
+      padding:10px;
+      border:1px solid #eee;
+      @include clearfix;
+      .column-drag-handle {
+        display:inline-block;
+        float:left;
+        width:30px;
+        height:30px;
+      }
     }
   }
 }
