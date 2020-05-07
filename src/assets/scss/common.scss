@@ -4,204 +4,370 @@
 @import "mixin";
 @import "extend";
 
+// 변수설정
+$mainColor: #4b78f0;
+$imagePathCommon: '~@/assets/common/images/';
+
 // 공통페이지 레이아웃
 #wrapper {
-  overflow:hidden;
-  position:relative;
-  max-width:750px;
-  margin:0 auto;
+  overflow: hidden;
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
-// 메인 HEADER
-.main-header {
-  height:50px;
-  padding:0 15px;
-  line-height:50px;
-  @include flexLayout(wrap,row,space-around,center);
-  > h1 {
+// 메인헤더
+#header {
+  position: relative;
+  height: 60px;
+  background: #fff;
+  .header-wrap {
+    @include flexLayout(wrap,row,space-around,center);
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    padding: 0 15px;
+    background: #fff;
+    .header-left {
+      width: 32px;
+      margin-right: auto;
+      text-align: left;
+    }
+    .header-center {
+      width: calc(100% - 32px - 84px);
+    }
+    .header-right {
+      max-width: 84px;
+      margin-left: auto;
+      text-align: right;
+    }
+    &.is-sub {
+      .header-left {
+        margin-right: 15px;
+      }
+      .header-center {        
+        margin-right: auto;
+      }
+    }
+    &.is-search {
+      .header-left {
+        margin-right: 15px;
+      }
+      .header-center {        
+        margin-right: auto;
+        width: calc(100% - 47px);
+      }
+    }
+  }
+  h1 {
     @include ellipsis;
-    width: 60%;
-    font-size:18px;
+    width: 100%;
+    color: $mainColor;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  h2 {
+    width: auto;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    > span {
+      display: inline-block;
+      padding-top: 6px;
+      color: $mainColor;
+      font-weight: normal;
+    }
+  }
+  .search-header {
+    padding-left: 0;
+    > a {
+      display: inline-block;
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+      padding-left: 15px;
+      border: solid 1px rgba(0, 0, 0, 0.05);
+      border-radius: 22.5px;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.03);
+      font-weight: normal;
+      > span {
+        color: $mainColor;
+      }
+    }
   }
   button {
-    width:30px;
-    height:30px;
-    border:1px solid #eee;
-  }
-  .btn-back {
-    margin-right:auto;
-  }
-  .btn-close {
-    margin-left:auto;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #eee;
   }
 }
 
-// 공통 POPUP
+// 공통팝업
 .u-popup {
-  position:fixed;
-  left:0;
-  top:0;
-  right:0;
-  bottom:0;
-  background:rgba(0,0,0,.5);
-  font-size:0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  font-size: 0;
   > .max-fixed-width {
     &:after {
-      content:'';
-      display:inline-block;
-      height:100vh;
+      content: '';
+      display: inline-block;
+      height: 100vh;
     }
     .pop-container {
-      position:relative;
-      overflow:hidden;
-      display:inline-block;
-      width:100%;
-      height:auto;
-      max-height:100vh;
-      padding-top:80px;
-      border-top-right-radius:20px;
-      border-top-left-radius:20px;
-      background:#fff;      
-      vertical-align:bottom;     
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+      padding-top: 80px;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      background: #fff;      
+      vertical-align: bottom;     
       .pop-close {
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-        height:30px;
-        background:#f4f4f4;
-        text-align:center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 30px;
+        background: #f4f4f4;
+        text-align: center;
       }
       .pop-header {
-        position:absolute;
-        top:30px;
-        width:100%;
-        height:50px;
-        padding:0 20px;
-        text-align:center;
-        line-height:50px;
+        position: absolute;
+        top: 30px;
+        width: 100%;
+        height: 50px;
+        padding: 0 20px;
+        text-align: center;
+        line-height: 50px;
         &.is-line {
           box-shadow: inset 0 -1px 0 0 #ddd;
         }
         h1 {
-          text-align:center;
-          margin:0 30px;
-          font-size:18px;
           @include ellipsis;
+          text-align: center;
+          margin: 0 30px;
+          font-size: 18px;
         }
         > button {
-          position:absolute;
-          top:10px;
-          width:30px;
-          height:30px;
+          position: absolute;
+          top: 10px;
+          width: 30px;
+          height: 30px;
         }
         .pop-btn-back {
-          left:20px;
+          left: 20px;
         }
         .pop-btn-text {
-          right:20px;
+          right: 20px;
           &.active {
-            color:skyblue;
+            color: skyblue;
           }
         }
       }
       .pop-contents {
-        height:auto;
-        max-height:calc(100vh - 80px);
-        overflow-y:scroll;
         @include scrollTouch;
+        height: auto;
+        max-height: calc(100vh - 80px);
+        overflow-y: scroll;
         overscroll-behavior: none;
-        font-size:12px;
+        font-size: 12px;
       }
       .pop-btn-area {
         height: 76px;
         > .max-fixed-width {
-          position:fixed;
-          bottom:0;
-          left:0;
-          right:0;
-          padding:14px 5px;
-          background:#fff;
-          box-shadow: inset 0 1px 0 0 #ddd;
           @include u_tb_fixed;
-          text-align:center;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 14px 5px;
+          background: #fff;
+          box-shadow: inset 0 1px 0 0 #ddd;
+          text-align: center;
           > div {
             @include u_td;
-            padding:0 5px;
+            padding: 0 5px;
           }
         }
         button {
-          width:100%;
-          height:48px;
-          border:1px solid #ccc;
-          border-radius:24px;
-          font-size:16px;
-          font-weight:500;
+          width: 100%;
+          height: 48px;
+          border: 1px solid #ccc;
+          border-radius: 24px;
+          font-size: 16px;
+          font-weight: 500;
         }
       }
     }
   }
 }
 
-.u-list-horizontal {
-  padding:10px;
-  @include list_horizontal_scroll(15px);
-  &.recommend {
-    a {
-      padding:5px 10px;
-      border:1px solid #eee;
-      border-radius:4px;
-      color:#ccc;
-      font-size:16px;
-      text-align:center;
+// 공통알럿
+.u-alert {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.5);
+  font-size: 0;
+  text-align: center;
+  &:after {
+    content: '';
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .pop-container {
+    overflow: hidden;
+    display: inline-block;
+    width: 315px;
+    border-radius: 20px;
+    vertical-align: middle;
+    background: #fcfcfc;
+    .pop-contents {
+      overflow-y: scroll;
+      height: auto;
+      max-height: calc(100vh - 58px);
+      padding: 40px 20px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .pop-btn-area {
+      @include u_tb;
+      border-top: 1px solid #eee;
+      > div {
+        @include u_td;
+        width: 50%;
+        button {
+          width: 100%;
+          padding: 19px 10px;
+          color: #969696;
+          font-size: 16px;
+        }
+        &:last-child {
+          border-left: 1px solid #eee;
+          button {
+            color: #4b78f0;
+          }
+        }
+        &:first-child {
+          border-left: none;
+        }
+      }
     }
   }
 }
 
-.flex-box {
-  padding:15px;
-  background:#f4f4f4;
+.tag-list {
   @include flexLayout(wrap,row,flex-start,center);
+  padding: 15px;
   > li {
-    width:auto;
-    min-height:30px;
-    padding:10px;
-    margin:5px;
-    border:1px solid #000;
+    width: auto;
+    padding: 6px 10px;
+    margin: 0 10px 0 0;
+    border-radius: 4px;
+    background: #f0f5fa;
     > a {
-      // @include clampNum();
+      color: #4b78f0;
+      font-size: 12px;
+      font-weight: 300;
     }
   }
 }
 
-.u-drag-box {
-  padding:10px;
-  .smooth-dnd-draggable-wrapper {
-    margin-top:10px;    
-    &:first-child {
-      margin-top:0;
+.nav-list {
+  > ul {
+    @include flexLayout(wrap,row,space-between,center);
+    padding: 12px 20px;
+    > a {
+      color: #5a5a5a;
+      font-size: 14px;
+      font-weight: 300;
+      text-align: center;
     }
   }
-  .draggable-item {
-    position:relative;
-    padding-left:80px;
-    > i {
-      position:absolute;
-      left:10px;
-      top:50%;
-      display:inline-block;
-      height:20px;
-      margin-top:-10px;
+}
+
+.cal-list {
+  position: relative;
+  > ul {
+    @include list_horizontal_scroll(20px);
+    padding: 0 20px;
+    border-bottom: 1px solid #eee;
+    li {
+      a {
+        padding: 12px 0 11px;
+        color: #969696;
+        font-size: 14px;
+        text-align: center;
+        &.active {
+          border-bottom: 1px solid #1e1e1e;
+          color: #1e1e1e;
+          font-weight: bold;
+        }
+      }
     }
-    > div {
-      padding:10px;
-      border:1px solid #eee;
-      @include clearfix;
-      .column-drag-handle {
-        display:inline-block;
-        float:left;
-        width:30px;
-        height:30px;
+  }
+  &.is-btn {
+    > ul {
+      padding-right: 72px;
+    }
+  }
+  > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    width: 52px;
+    height: 42px;
+    border: 1px solid #eee;
+    background: #fff;
+  }
+}
+
+.u-list-none {
+  display: flex;
+  height: calc(100vh - 60px);
+  background: #fafafa;
+  > div {
+    margin: auto;
+    text-align: center;
+    color: #1e1e1e;
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
+
+.list-menu {
+  > ul {
+    @include list_horizontal_scroll(10px);
+    padding: 0 20px;
+    > li {
+      > a {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 15px;
+        border: 1px solid #ebebeb;
+        border-radius: 16px;
+        color: #1e1e1e;
+        font-size: 14px;
+        font-weight: 300;
+        &.active {
+          border: 1px solid #6991ff;
+          background: #6991ff;
+          color: #fff;
+        }
       }
     }
   }

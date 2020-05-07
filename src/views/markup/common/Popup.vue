@@ -11,7 +11,7 @@
           </div>
           <div class="pop-contents">
             <ul>
-              <li v-for="list in 10" :key="list">{{ list }}</li>
+              <li v-for="list in 20" :key="list">{{ list }}</li>
             </ul>
             <div class="pop-btn-area">
               <div class="max-fixed-width">

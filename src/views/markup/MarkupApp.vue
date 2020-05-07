@@ -7,7 +7,11 @@
       <main id="main" role="main">
         <h2>공통</h2>
         <ul class="lst_view">
-          <li><router-link to="markup/common/popup">팝업</router-link></li>
+          <li><router-link to="markup/common/popup">하단팝업</router-link></li>
+          <li><router-link to="markup/common/alert">알럿</router-link></li>
+        </ul>
+        <h2>메인</h2>
+        <ul class="lst_view">
           <li><router-link to="markup/main/main">메인</router-link></li>
         </ul>
       </main>
